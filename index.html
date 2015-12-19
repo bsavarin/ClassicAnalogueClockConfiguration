@@ -104,7 +104,6 @@
 	})();
  
    function getConfigData() {
-        var invertSelect = document.getElementById("invert_select");
 		var secondsDisplay = document.getElementById("seconds_display");
 		var obgcolourDisplay = document.getElementById("obgcolour_display");
 		var ibgcolourDisplay = document.getElementById("ibgcolour_display");
@@ -119,7 +118,6 @@
 		var bcolourDisplay = document.getElementById("bcolour_display");
 		
 		var options = {
-          "invert": invertSelect.checked ? "true":"false",
 		  "seconds": secondsDisplay.checked ? "true":"false",
 		  "obgcolour": obgcolourDisplay.value,
 		  "ibgcolour": ibgcolourDisplay.value,
@@ -133,7 +131,6 @@
 		  "ccolour": ccolourDisplay.value,
 		  "bcolour": bcolourDisplay.value
 		};
-			localStorage["invert"] = options.invert;
 			localStorage["seconds"] = options.seconds;
 			localStorage["obgcolour"] = options.obgcolour;
 			localStorage["ibgcolour"] = options.ibgcolour;
@@ -177,7 +174,6 @@
 	 }
 	  
 	function loadOptions(){
-	    var invertSelect = document.getElementById("invert_select");
 		var secondsDisplay = document.getElementById("seconds_display");
 		var obgcolourDisplay = document.getElementById("obgcolour_display");
 		var ibgcolourDisplay = document.getElementById("ibgcolour_display");
@@ -191,8 +187,7 @@
 		var ccolourDisplay = document.getElementById("ccolour_display");
 		var bcolourDisplay = document.getElementById("bcolour_display");
 		
-		if(localStorage["invert"]) {
-			invertSelect.checked = localStorage["invert"] === "true";
+		if(localStorage["seconds"]) {
 			secondsDisplay.checked = localStorage["seconds"] === "true";
 			obgcolourDisplay.value = localStorage["obgcolour"];
 			ibgcolourDisplay.value = localStorage["ibgcolour"];
