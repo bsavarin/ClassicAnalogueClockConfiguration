@@ -37,16 +37,11 @@
     </div>
 	
 	<div class="item-container">
-      <div class="item-container-header">Themes - Original Pebble and Pebble Steel ONLY</div>
+      <div class="item-container-header">Invert watchface (for Pebble and Pebble Steel only):</div>
       <div class="item-container-content">
         <label class="item">
-          Choose themes:
-		    <select id="theme_display" name="select-1" dir='rtl' class="item-select">
-            <option class="item-select-option" value="1" selected>White on Black</option>
-            <option class="item-select-option" value="2">White on White</option>
-			<option class="item-select-option" value="3">Black on Black</option>
-			<option class="item-select-option" value="4">Black on White</option>
-          </select>
+          Invert watchface
+		  <input id="invert_select" type="checkbox" class="item-toggle" name="toggle-1" />
         </label>
       </div>
       <div class="item-container-footer">
@@ -121,8 +116,8 @@
 	})();
  
    function getConfigData() {
+		var invertSelect = document.getElementById("invert_select");
 		var secondsDisplay = document.getElementById("seconds_display");
-		var themeDisplay = document.getElementById("theme_display");
 		var obgcolourDisplay = document.getElementById("obgcolour_display");
 		var ibgcolourDisplay = document.getElementById("ibgcolour_display");
 		var shcolourDisplay = document.getElementById("shcolour_display");
@@ -136,8 +131,8 @@
 		var bcolourDisplay = document.getElementById("bcolour_display");
 		
 		var options = {
+		  "invert": invertSelect.checked ? "true":"false",
 		  "seconds": secondsDisplay.checked ? "true":"false",
-		  "theme": themeDisplay.value,
 		  "obgcolour": obgcolourDisplay.value,
 		  "ibgcolour": ibgcolourDisplay.value,
 		  "shcolour": shcolourDisplay.value,
@@ -150,8 +145,8 @@
 		  "ccolour": ccolourDisplay.value,
 		  "bcolour": bcolourDisplay.value
 		};
+			localStorage["invert"] = options.invert;
 			localStorage["seconds"] = options.seconds;
-			localStorage["theme"] = options.theme;
 			localStorage["obgcolour"] = options.obgcolour;
 			localStorage["ibgcolour"] = options.ibgcolour;
 			localStorage["shcolour"] = options.shcolour;
@@ -194,8 +189,8 @@
 	 }
 	  
 	function loadOptions(){
+	    var invertSelect = document.getElementById("invert_select");
 		var secondsDisplay = document.getElementById("seconds_display");
-		var themeDisplay = document.getElementById("theme_display");
 		var obgcolourDisplay = document.getElementById("obgcolour_display");
 		var ibgcolourDisplay = document.getElementById("ibgcolour_display");
 		var shcolourDisplay = document.getElementById("shcolour_display");
@@ -208,9 +203,9 @@
 		var ccolourDisplay = document.getElementById("ccolour_display");
 		var bcolourDisplay = document.getElementById("bcolour_display");
 		
-		if(localStorage["seconds"]) {
+		if(localStorage["invert"]) {
+			invertSelect.checked = localStorage["invert"] === "true";
 			secondsDisplay.checked = localStorage["seconds"] === "true";
-			themeDisplay.value = localStorage["theme"];
 			obgcolourDisplay.value = localStorage["obgcolour"];
 			ibgcolourDisplay.value = localStorage["ibgcolour"];
 			shcolourDisplay.value = localStorage["shcolour"];
